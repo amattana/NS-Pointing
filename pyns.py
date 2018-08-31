@@ -177,7 +177,7 @@ class ImageDialog(QtGui.QMainWindow):
 		self.ui.arbitrary_dec.setEnabled(False)
 		self.ui.button_move_arb.setEnabled(False)
 		# self.ui.button_move_src.setEnabled(False)
-		self.ui.cb_sel_ramo.setEnabled(False)
+		#self.ui.cb_sel_ramo.setEnabled(False)
 
 		self.process_antenna_status = Thread(target=self.antenna_check)
 		self.process_time_left = Thread(target=self.rs_time_left)
@@ -209,6 +209,11 @@ class ImageDialog(QtGui.QMainWindow):
 			self.ant_pos[i].setText("44.5")
 
 		self.initPics()
+		self.ui.cb_1n.setEnabled(False)
+		self.ui.cb_2n.setEnabled(False)
+		self.ui.cb_1s.setEnabled(False)
+		self.ui.cb_2s.setEnabled(False)
+
 		self.ui.show()
 
 		try:
@@ -229,7 +234,7 @@ class ImageDialog(QtGui.QMainWindow):
 		# self.ui.button_move_src.clicked.connect(lambda: self.point_antenna('src'))
 		clickable(self.ui.label_enabled).connect(lambda: self.action_enable())
 		clickable(self.ui.label_connected).connect(lambda: self.action_connect())
-		self.ui.cb_sel_ramo.currentIndexChanged.connect(lambda: self.select_ramo())
+		#self.ui.cb_sel_ramo.currentIndexChanged.connect(lambda: self.select_ramo())
 
 	def create_rs_table(self):
 		rs = calib_source()
@@ -402,9 +407,10 @@ class ImageDialog(QtGui.QMainWindow):
 		self.ui.label_enabled.setStyleSheet("background-color: rgb(122, 122, 122); color: rgb(255, 255, 255)")
 		self.ui.arbitrary_dec.setEnabled(False)
 		self.ui.button_move_arb.setEnabled(False)
-		self.ui.comboBox.setEnabled(False)
-		self.ui.button_move_src.setEnabled(False)
-		self.ui.cb_sel_ramo.setEnabled(False)
+		self.ui.cb_1n.setEnabled(False)
+		self.ui.cb_2n.setEnabled(False)
+		self.ui.cb_1s.setEnabled(False)
+		self.ui.cb_2s.setEnabled(False)
 		self.armed = False
 
 	def move_arm(self):
@@ -412,9 +418,10 @@ class ImageDialog(QtGui.QMainWindow):
 		self.ui.label_enabled.setStyleSheet("background-color: rgb(0, 255, 0); color: rgb(0, 0, 0)")
 		self.ui.arbitrary_dec.setEnabled(True)
 		self.ui.button_move_arb.setEnabled(True)
-		#self.ui.comboBox.setEnabled(True)
-		#self.ui.button_move_src.setEnabled(True)
-		self.ui.cb_sel_ramo.setEnabled(True)
+		self.ui.cb_1n.setEnabled(True)
+		self.ui.cb_2n.setEnabled(True)
+		self.ui.cb_1s.setEnabled(True)
+		self.ui.cb_2s.setEnabled(True)
 		self.armed = True
 
 	def point_antenna(self, dst='arb'):
