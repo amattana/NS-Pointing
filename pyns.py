@@ -323,8 +323,19 @@ class ImageDialog(QtGui.QMainWindow):
 			self.rs_records[i]['button_move'].setEnabled(False)
 			self.rs_records[i]['button_move'].show()
 
+	def update_rs_table(self):
+		rs = calib_source()
+		for i in range(len(rs)):
+			self.rs_records[i]['name'].setText(rs[i].split()[1])
+			self.rs_records[i]['astroname'].setText(rs[i].split()[0])
+			self.rs_records[i]['flux'].setText(rs[i].split()[8])
+			self.rs_records[i]['dec'].setText(primi2deg(rs[i].split()[6]))
+			self.rs_records[i]['remaining'].setText("-"+rs[i].split()[16])
+			self.rs_records[i]['transit'].setText(rs[i].split()[11] + " " + rs[i].split()[12])
+
+
 	def updatetimeleft(self):
-			self.create_rs_table()
+			self.update_rs_table()
 
 	def action_connect(self):
 		if not self.connected:
